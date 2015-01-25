@@ -10,20 +10,24 @@ import Foundation
 import UIKit
 
 class AddViewController: UIViewController, UITextFieldDelegate, AddViewInterface {
+  
     var eventHandler : AddModuleInterface?
 
-    @IBOutlet var nameTextField : UITextField
-    @IBOutlet var datePicker : UIDatePicker?
+    @IBOutlet weak var nameTextField : UITextField?
+    @IBOutlet weak var datePicker : UIDatePicker?
     
     var minimumDate : NSDate = NSDate()
     var transitioningBackgroundView : UIView = UIView()
     
     @IBAction func save(sender: AnyObject) {
-        eventHandler?.saveAddActionWithName(nameTextField.text, dueDate: datePicker!.date)
+
+        if let text = nameTextField?.text {
+            eventHandler?.saveAddActionWithName(text, dueDate: datePicker!.date)
+        }
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        nameTextField.resignFirstResponder()
+        nameTextField?.resignFirstResponder()
         eventHandler?.cancelAddAction()
     }
     
@@ -35,7 +39,7 @@ class AddViewController: UIViewController, UITextFieldDelegate, AddViewInterface
         
         transitioningBackgroundView.userInteractionEnabled = true
         
-        nameTextField.becomeFirstResponder()
+        nameTextField?.becomeFirstResponder()
         
         if let realDatePicker = datePicker {
             realDatePicker.minimumDate = minimumDate
@@ -45,7 +49,7 @@ class AddViewController: UIViewController, UITextFieldDelegate, AddViewInterface
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        nameTextField.resignFirstResponder()
+        nameTextField?.resignFirstResponder()
     }
     
     func dismiss() {
@@ -53,7 +57,7 @@ class AddViewController: UIViewController, UITextFieldDelegate, AddViewInterface
     }
     
     func setEntryName(name: NSString) {
-        nameTextField.text = name
+        nameTextField?.text = name
     }
     
     func setEntryDueDate(date: NSDate) {

@@ -7,15 +7,20 @@
 //
 
 import Foundation
+import CoreData
 
 class AddDataManager : NSObject {
+ 
     var dataStore : CoreDataStore?
     
     func addNewEntry(entry: TodoItem) {
-        let newEntry = dataStore?.newTodoItem() as ManagedTodoItem
-        newEntry.name = entry.name
-        newEntry.date = entry.dueDate;
-        
-        dataStore?.save()
+    
+        if let ne = dataStore?.newTodoItem() {
+            
+            ne.name = entry.name
+            ne.date = entry.dueDate;
+            
+            dataStore?.save()
+        }
     }
 }
