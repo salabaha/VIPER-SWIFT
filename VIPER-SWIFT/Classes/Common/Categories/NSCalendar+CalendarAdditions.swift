@@ -10,7 +10,7 @@ import Foundation
 
 extension NSCalendar {
     class func gregorianCalendar() -> NSCalendar {
-        return NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        return NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
     }
     
     func dateWithYear(year: Int, month: Int, day: Int) -> NSDate {
@@ -39,7 +39,7 @@ extension NSCalendar {
     
     func dateForBeginningOfDay(date: NSDate) -> NSDate {
         
-        let newComponent = components((.YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit), fromDate: date)
+        let newComponent = components((.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay), fromDate: date)
         let newDate  = dateFromComponents(newComponent)
       
         return newDate!
@@ -59,8 +59,8 @@ extension NSCalendar {
     
     func daysRemainingInWeekWithDate(date: NSDate) -> Int {
         
-        let weekdayComponent = components(.WeekdayCalendarUnit, fromDate: date)
-        let daysRange = rangeOfUnit(.WeekdayCalendarUnit, inUnit: .WeekOfYearCalendarUnit, forDate: date)
+        let weekdayComponent = components(.CalendarUnitWeekday, fromDate: date)
+        let daysRange = rangeOfUnit(.CalendarUnitWeekday, inUnit: .CalendarUnitWeekOfYear, forDate: date)
         let daysPerWeek = daysRange.length
         let daysRemaining = daysPerWeek - weekdayComponent.weekday
         
@@ -92,8 +92,8 @@ extension NSCalendar {
     }
     
     func isDate(date: NSDate, duringSameWeekAsDate: NSDate) -> Bool {
-        let dateComponents :NSDateComponents = components(.WeekOfYearCalendarUnit, fromDate: date)
-        let duringSameWeekComponents: NSDateComponents = components(.WeekOfYearCalendarUnit, fromDate: duringSameWeekAsDate)
+        let dateComponents :NSDateComponents = components(.CalendarUnitWeekOfYear, fromDate: date)
+        let duringSameWeekComponents: NSDateComponents = components(.CalendarUnitWeekOfYear, fromDate: duringSameWeekAsDate)
         let result = (dateComponents.weekOfYear == duringSameWeekComponents.weekOfYear)
      
         return result
@@ -101,8 +101,8 @@ extension NSCalendar {
     
     func isDate(date: NSDate, duringWeekAfterDate: NSDate) -> Bool {
         let nextWeek = dateForEndOfFollowingWeekWithDate(duringWeekAfterDate)
-        let dateComponents = components(.WeekOfYearCalendarUnit, fromDate: date)
-        let nextWeekComponents = components(.WeekOfYearCalendarUnit, fromDate: nextWeek)
+        let dateComponents = components(.CalendarUnitWeekOfYear, fromDate: date)
+        let nextWeekComponents = components(.CalendarUnitWeekOfYear, fromDate: nextWeek)
         let result = dateComponents.weekOfYear == nextWeekComponents.weekOfYear
         return result
     }
@@ -125,7 +125,7 @@ extension NSCalendar {
     }
     
     func yearMonthDayComponentsFromDate(date: NSDate) -> NSDateComponents {
-        let newComponents = components((.YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit), fromDate: date)
+        let newComponents = components((.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay), fromDate: date)
         return newComponents
     }
     

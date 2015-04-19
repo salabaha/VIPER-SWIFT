@@ -84,7 +84,7 @@ class ListViewController : UITableViewController, ListViewInterface {
         let upcomingSection = dataProperty?.sections[indexPath.section]
         let upcomingItem = upcomingSection!.items[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(ListEntryCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(ListEntryCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         
         cell.textLabel?.text = upcomingItem.title;
         cell.detailTextLabel?.text = upcomingItem.dueDate;

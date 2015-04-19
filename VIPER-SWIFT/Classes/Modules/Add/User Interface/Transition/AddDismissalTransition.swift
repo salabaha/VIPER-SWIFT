@@ -17,14 +17,14 @@ class AddDismissalTransition : NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as AddViewController
+        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! AddViewController
         
         let finalCenter = CGPointMake(160.0, (fromVC.view.bounds.size.height / 2) - 1000.0)
         
         let options = UIViewAnimationOptions.CurveEaseIn
         
         UIView.animateWithDuration(self.transitionDuration(transitionContext),
-            delay: 0.0,
+            delay: 0.1,
             usingSpringWithDamping: 0.64,
             initialSpringVelocity: 0.22,
             options: options,

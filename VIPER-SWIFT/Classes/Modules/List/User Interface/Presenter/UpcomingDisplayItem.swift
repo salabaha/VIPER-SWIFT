@@ -9,17 +9,12 @@
 import Foundation
 
 struct UpcomingDisplayItem : Equatable, Printable {
-    let title : String = ""
-    let dueDate : String = ""
+    let title : String
+    let dueDate : String
     
     var description : String { get {
         return "\(title) -- \(dueDate)"
     }}
-    
-    init(title: String, dueDate: String) {
-        self.title = title
-        self.dueDate = dueDate
-    }
 }
 
 func == (leftSide: UpcomingDisplayItem, rightSide: UpcomingDisplayItem) -> Bool {

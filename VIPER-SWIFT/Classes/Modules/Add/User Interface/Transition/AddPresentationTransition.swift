@@ -19,7 +19,7 @@ class AddPresentationTransition: NSObject, UIViewControllerAnimatedTransitioning
     
     
         let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as AddViewController
+        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! AddViewController
         
         toVC.transitioningBackgroundView.backgroundColor = UIColor.darkGrayColor()
         toVC.transitioningBackgroundView.alpha = 0.0

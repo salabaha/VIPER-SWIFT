@@ -56,7 +56,7 @@ class CoreDataStore : NSObject {
         
         managedObjectContext?.performBlock {
             let queryResults = self.managedObjectContext?.executeFetchRequest(fetchRequest, error: nil)
-            let managedResults = queryResults! as  [ManagedTodoItem]
+            let managedResults = queryResults! as!  [ManagedTodoItem]
             completionBlock(managedResults)
         }
     }
@@ -64,7 +64,7 @@ class CoreDataStore : NSObject {
     func newTodoItem() -> ManagedTodoItem {
         
         let entityDescription = NSEntityDescription.entityForName("TodoItem", inManagedObjectContext: managedObjectContext)
-        let newEntry   = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext) as ManagedTodoItem
+        let newEntry   = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext) as! ManagedTodoItem
         
         return newEntry
     }

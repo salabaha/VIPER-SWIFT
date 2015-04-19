@@ -21,7 +21,7 @@ class ListDataManager : NSObject {
         let sortDescriptors = []
         
         coreDataStore?.fetchEntriesWithPredicate(predicate,
-            sortDescriptors: sortDescriptors,
+            sortDescriptors: sortDescriptors as [AnyObject],
             completionBlock: { entries in
                 let todoItems = self.todoItemsFromDataStoreEntries(entries)
                 completion(todoItems)
@@ -32,7 +32,7 @@ class ListDataManager : NSObject {
         var todoItems : [TodoItem] = []
         
         for managedTodoItem in entries {
-            let todoItem = TodoItem(dueDate: managedTodoItem.date, name: managedTodoItem.name)
+            let todoItem = TodoItem(dueDate: managedTodoItem.date, name: managedTodoItem.name as String)
             todoItems.append(todoItem)
         }
         
